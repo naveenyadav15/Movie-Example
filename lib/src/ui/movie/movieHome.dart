@@ -30,8 +30,8 @@ class _ShowAllMoviesState extends State<ShowAllMovies> with AfterLayoutMixin {
   String title = Constants.appTitle;
   _signOut(BuildContext context) async {
     try {
+      Navigator.pop(context);
       Provider.of<AuthProvider>(context, listen: false).signOut();
-
       setState(() {});
       await Preferences.clearPreference();
     } catch (e) {

@@ -32,8 +32,9 @@ class _VerifyScreenState extends State<VerifyScreen> {
       Provider.of<AuthProvider>(context, listen: false)
           .verifyOTP(otpController.text.toString())
           .then((_) {
+        Navigator.pop(context);
         // Navigator.of(context).pushNamed(HomeScreen.routeArgs);
-        Navigator.of(context).pushReplacementNamed(HomeScreen.routeArgs);
+        // Navigator.of(context).pushReplacementNamed(HomeScreen.routeArgs);
       }).catchError((e) {
         String errorMsg = 'Error authenticating. Please Try again later!$e';
         if (e.toString().contains("ERROR_SESSION_EXPIRED")) {
