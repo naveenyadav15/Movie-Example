@@ -1,9 +1,7 @@
 import 'dart:math';
 
-import 'package:after_layout/after_layout.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:movie_provider/src/model/core/movie.dart';
 import 'package:movie_provider/src/model/glitch/noInternet.dart';
 
 import '../movieErrorTile.dart';
@@ -19,8 +17,8 @@ class MovieDetailPage extends StatelessWidget {
 
   Widget movies;
 
-  loadData() async {
-    var result = await provider.getMovieById(imdbId);
+  loadData(BuildContext context) async {
+    var result = await  provider.getMovieById(imdbId);
     result.fold((l) {
       if (l is NoInternetGlitch) {
         Color randomColor = Color.fromRGBO(Random().nextInt(255),
@@ -39,7 +37,7 @@ class MovieDetailPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: FutureBuilder(
-        future: loadData(),
+        future: loadData(context),
         builder: (context, snapshot) {
           // print("snapshot.connectionstate: ${snapshot.connectionState}");
           switch (snapshot.connectionState) {

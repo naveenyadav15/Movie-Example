@@ -6,10 +6,8 @@ import 'movieTile.dart';
 
 class MovieList extends StatelessWidget {
   final SearchMovieModel searchMovieModel;
-  final provider;
   MovieList({
     @required this.searchMovieModel,
-    @required this.provider,
   });
 
   final double itemHeight = (cHeight - kToolbarHeight - 24) / 2;
@@ -25,7 +23,6 @@ class MovieList extends StatelessWidget {
       children: List.generate(_len, (index) {
         return MovieTile(
           movie: searchMovieModel.search[index],
-          provider: provider,
         );
       }),
     );

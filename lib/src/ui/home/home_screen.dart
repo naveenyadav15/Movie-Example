@@ -15,7 +15,8 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       body: ChangeNotifierProvider.value(
         value: MovieProvider(),
-        builder: (context, _) => ShowAllMovies(),
+        builder: (context, _) =>
+         ShowAllMovies(),
       ),
     );
   }

@@ -22,15 +22,6 @@ class MyApp extends StatelessWidget {
     return ChangeNotifierProvider.value(
       value: AuthProvider(FirebaseAuth.instance),
       child: MaterialApp(
-        // supportedLocales: [
-        //   Locale('en'),
-        //   Locale('it'),
-        //   Locale('fr'),
-        //   Locale('es'),
-        // ],
-        // localizationsDelegates: [
-        //   CountryLocalizations.delegate,
-        // ],
         title: 'Movie Example',
         // debugShowCheckedModeBanner: false,
         theme: ThemeData(

@@ -121,8 +121,16 @@ class MovieDetailUi extends StatelessWidget {
   }
 
   bottomTimeContainer() {
-    double rating = double.parse(movieItem.imdbRating);
-    rating /= 2.0;
+    bool ratingA = true;
+    double rating = 0.0;
+    try {
+      rating = double.parse(movieItem?.imdbRating);
+
+      rating /= 2.0;
+    } catch (err) {
+      print("error: $err");
+      ratingA = false;
+    }
     print("rating is: $rating");
     return Container(
       child: Align(
@@ -134,25 +142,33 @@ class MovieDetailUi extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Row(
-                children: [
-                  SmoothStarRating(
-                    allowHalfRating: true,
-                    onRated: (v) {},
-                    starCount: 5,
-                    rating: rating,
-                    isReadOnly: true,
-                    color: Colors.amber,
-                    borderColor: Colors.amber,
-                  ),
-                  MPText(
-                    text: movieItem.ratings[0].value + " ",
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                    textAlign: TextAlign.left,
-                  ),
-                ],
-              ),
+              !ratingA
+                  ? Container(
+                      child: MPText(
+                        text: "Rating: N/A",
+                        color: Colors.white,
+                        textAlign: TextAlign.left,
+                      ),
+                    )
+                  : Row(
+                      children: [
+                        SmoothStarRating(
+                          allowHalfRating: true,
+                          onRated: (v) {},
+                          starCount: 5,
+                          rating: rating,
+                          isReadOnly: true,
+                          color: Colors.amber,
+                          borderColor: Colors.amber,
+                        ),
+                        MPText(
+                          text: movieItem?.ratings[0]?.value ?? "" + " ",
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          textAlign: TextAlign.left,
+                        ),
+                      ],
+                    ),
               MPText(
                 text: movieItem.title,
                 color: Colors.white,
@@ -204,7 +220,7 @@ class MovieDetailUi extends StatelessWidget {
               color: Colors.black.withOpacity(0.6),
             ),
             Container(
-              padding: EdgeInsets.fromLTRB(15,15,15,0),
+              padding: EdgeInsets.fromLTRB(15, 15, 15, 0),
               child: Column(
                 children: [
                   Row(

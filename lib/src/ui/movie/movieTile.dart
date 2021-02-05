@@ -1,14 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:movie_provider/src/model/core/searchMovie.dart';
+import 'package:movie_provider/src/provider/movie_provider.dart';
 import 'package:movie_provider/src/utils/variable.dart';
+import 'package:provider/provider.dart';
 
 import 'movieDetail/movieDetailPage.dart';
 
 class MovieTile extends StatefulWidget {
   final Search movie;
-  final provider;
-  MovieTile({@required this.movie, @required this.provider});
+  MovieTile({@required this.movie, });
 
   @override
   _MovieTileState createState() => _MovieTileState();
@@ -24,8 +25,8 @@ class _MovieTileState extends State<MovieTile> {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => MovieDetailPage(
-                provider: widget.provider,
+              builder: (ctx) => MovieDetailPage(
+                provider: Provider.of<MovieProvider>(context, listen: false),
                 imdbId: widget.movie.imdbId,
               ),
             ),

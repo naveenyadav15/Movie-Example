@@ -60,7 +60,6 @@ class _ShowAllMoviesState extends State<ShowAllMovies> with AfterLayoutMixin {
           (r) => {
                 movies = MovieList(
                   searchMovieModel: r,
-                  provider: provider,
                 ),
               });
       setState(() {});
